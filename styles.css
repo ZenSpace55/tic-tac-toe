@@ -1,3 +1,33 @@
 html{
     background-color: aquamarine;
 }
+
+.gameBoard{
+    display: grid;
+    position: fixed;
+    left: 35%;
+    top: 5%;
+    width: 30%;
+    height: 65%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5px;
+    background-color: red;
+}
+
+.gameSquare{
+    background-color: blue;
+}
+
+.squareButton{
+    background-color: purple;
+    width: 100%;
+    height: 100%;
+    opacity: 85%;
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
+}
+.squareButton:hover{
+    opacity: 100%;
+}
