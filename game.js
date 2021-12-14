@@ -34,6 +34,9 @@ const Gameboard = (() => {
     const openSlots = [];
 
     const playSquare = function(square){
+        if (boardSlots[square].textContent !== ""){
+            return;
+        }
         boardSlots[square].textContent = Game.turn;
         const index = openSlots.indexOf(square);
         openSlots.splice(index, 1);

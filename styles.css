@@ -1,5 +1,7 @@
 html{
-    background-color: aquamarine;
+    background: url('img/chalk.jpg') no-repeat center center fixed;
+    background-size: cover;
+    
 }
 
 .gameBoard{
@@ -11,23 +13,56 @@ html{
     height: 65%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 5px;
-    background-color: red;
+    gap: 20px;
+    background: url('img/chalktictactoe.png') no-repeat;
+    background-size: 100% 100%;
 }
 
 .gameSquare{
-    background-color: blue;
 }
 
 .squareButton{
-    background-color: purple;
+    background-color: transparent;
+    border-width: 0;
     width: 100%;
     height: 100%;
-    opacity: 85%;
-    font-size: 40px;
-    font-weight: 900;
+    opacity: 70%;
+    font-size: 5vw;
+    font-weight: 800;
+    font-family: 'Caveat', sans-serif;
     color: white;
+    border-radius: 8px;
 }
 .squareButton:hover{
-    opacity: 100%;
+    background-color: rgb(17, 32, 31);
+    opacity: 50%;
+    transform: scale(1.05);
+}
+
+.playerName{
+    display: inline-block;
+    width: 35%;
+    height: 80%;
+    background-color: transparent;
+    font-family: 'Fredericka the Great', serif;
+    text-align: left;
+    color: white;
+    font-size: 50px;
+    opacity: 80%;
+}
+
+.oPlayer{
+    text-align: right;
+}
+
+input{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: rgb(196, 196, 196);
+    color: white;
+    font-family: 'Fredericka the Great', serif;
+    font-size: 40px;
+
 }
