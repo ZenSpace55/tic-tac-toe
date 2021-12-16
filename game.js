@@ -1,7 +1,5 @@
 let adviceText = document.querySelector(".adviceText");
-let p1;
-let p2;
-let gameStarted;
+
 const Game = (() => {
 
     let turn = "X";
@@ -13,11 +11,11 @@ const Game = (() => {
         let gameState = Gameboard.checkForWin();
         if (gameState === "X"){
             this.gameOver = true;
-            adviceText.textContent = "WINNER! Congratulations " + p1;
+            adviceText.textContent = "WINNER! Congratulations X";
         }
         else if (gameState === "O"){
             this.gameOver = true;
-            adviceText.textContent = "WINNER! Congratulations " + p2;
+            adviceText.textContent = "WINNER! Congratulations O";
         }
         else if (gameState === "D"){
             this.gameOver = true;
@@ -26,22 +24,14 @@ const Game = (() => {
         if (!this.gameOver){
             if (this.turn === "X"){
                 this.turn = "O";
-                adviceText.textContent = p2 + "'s Turn!"
+                adviceText.textContent = "O's Turn!"
             }
             else{
                 this.turn = "X";
-                adviceText.textContent = p1 + "'s Turn!"
+                adviceText.textContent = "X's Turn!"
             }
         }
         console.log("Is game over: " + this.gameOver);
-    }
-
-    const startGame = function(){
-        p1 = document.getElementById("xName").value;
-        p2 = document.getElementById("oName").value;
-        if (p1 === ""){p1 = "X"};
-        if (p2 === ""){p2 = "O"};
-        gameStarted = true;
     }
 
     const resetGame = function(){
@@ -55,10 +45,10 @@ const Game = (() => {
         this.gameOver = false;
         this.startGame = false;
         this.turn = "X";
-        adviceText.textContent = adviceText.textContent = p1 + "'s Turn!"
+        adviceText.textContent = adviceText.textContent = "X's Turn!"
     }
 
-    return {turn, startGame, gameOver, resetGame, endTurn};
+    return {turn, gameOver, resetGame, endTurn};
 })();
 
 const Gameboard = (() => {
@@ -68,9 +58,6 @@ const Gameboard = (() => {
     let openSlots = [];
 
     const playSquare = function(square){
-        if (!gameStarted){
-            Game.startGame();
-        }
         if (Game.gameOver){
             return;
         }
@@ -142,15 +129,6 @@ const Gameboard = (() => {
 const Player = (name) => {
     return {name};
 }
-
-function renderBoard(){
-
-}
-
-function InitializeGame(){
-
-}
-
 function playSquare(square){
     if (!Game.gameOver){
         Gameboard.playSquare(square);

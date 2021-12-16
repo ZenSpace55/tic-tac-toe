@@ -4,6 +4,10 @@ html{
     
 }
 
+body{
+    display: flex;
+}
+
 .gameBoard{
     display: grid;
     position: fixed;
@@ -40,8 +44,8 @@ html{
 }
 
 .playerName{
-    display: block;
-    width: 35%;
+    display: inline-block;
+    width: 30%;
     height: 80%;
     background-color: transparent;
     margin-left: 3%;
@@ -81,4 +85,23 @@ input{
     font-family: 'Fredericka the Great', serif;
     font-size: 60px;
     opacity: 80%;
+}
+
+.resetButton{
+    background-color:transparent;
+    font-family: 'Fredericka the Great', serif;
+    font-size: 30px;
+    color: white;
+    border-style: solid;
+    border-color: white;
+    border-radius: 8px;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+.resetButton:hover{
+    transform: scale(1.05);
+}
+
+p{
+    font-size: 20px;
 }
