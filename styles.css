@@ -7,13 +7,13 @@ html{
 .gameBoard{
     display: grid;
     position: fixed;
-    left: 35%;
+    left: 36%;
     top: 5%;
     width: 30%;
     height: 65%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 20px;
+    gap: 50px;
     background: url('img/chalktictactoe.png') no-repeat;
     background-size: 100% 100%;
 }
@@ -40,10 +40,11 @@ html{
 }
 
 .playerName{
-    display: inline-block;
+    display: block;
     width: 35%;
     height: 80%;
     background-color: transparent;
+    margin-left: 3%;
     font-family: 'Fredericka the Great', serif;
     text-align: left;
     color: white;
@@ -56,13 +57,28 @@ html{
 }
 
 input{
+    display: block;
     background-color: transparent;
     border: 0;
     border-bottom: 3px;
     border-style: solid;
     border-color: rgb(196, 196, 196);
+    width: 60%;
     color: white;
     font-family: 'Fredericka the Great', serif;
     font-size: 40px;
+    text-align: center;
 
+}
+
+.adviceText{
+    position: fixed;
+    width: 80%;
+    left: 10%;
+    top: 80%;
+    text-align: center;
+    color: white;
+    font-family: 'Fredericka the Great', serif;
+    font-size: 60px;
+    opacity: 80%;
 }

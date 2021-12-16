@@ -12,7 +12,10 @@
 <body>
     <div class="playerName">
         <label for="xName">X Player:</label>
-        <input id="xName">
+        <input id="xName" maxlength="22">
+        <label for="oName">O Player:</label>
+        <input id="oName" maxlength="22">
+        <button onclick="Game.resetGame()">Reset Game</button>
     </div>
     <div class="gameBoard">
         <div class="gameSquare">
@@ -43,5 +46,6 @@
             <button id="8" class="squareButton"></button>
         </div>
     </div>
+    <div class="adviceText">X's turn</div>
 </body>
 </html>

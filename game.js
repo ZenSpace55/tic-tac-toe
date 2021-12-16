@@ -1,39 +1,79 @@
+let adviceText = document.querySelector(".adviceText");
+let p1;
+let p2;
+let gameStarted;
 const Game = (() => {
 
     let turn = "X";
+    let gameOver;
 
     const endTurn = function(){
 
         console.log("attempting turn switch");
-        let gameEnded = Gameboard.checkForWin();
-        if (gameEnded === "X"){
-            console.log("x victory");
+        let gameState = Gameboard.checkForWin();
+        if (gameState === "X"){
+            this.gameOver = true;
+            adviceText.textContent = "WINNER! Congratulations " + p1;
         }
-        else if (gameEnded === "O"){
-            console.log("o victory");
+        else if (gameState === "O"){
+            this.gameOver = true;
+            adviceText.textContent = "WINNER! Congratulations " + p2;
         }
-        else if (gameEnded === "D"){
-            console.log("board full, DRAW");
+        else if (gameState === "D"){
+            this.gameOver = true;
+            adviceText.textContent = "-DRAW-";
         }
-        else console.log("game continues" + gameEnded);
-        if (this.turn === "X"){
-            this.turn = "O";
+        if (!this.gameOver){
+            if (this.turn === "X"){
+                this.turn = "O";
+                adviceText.textContent = p2 + "'s Turn!"
+            }
+            else{
+                this.turn = "X";
+                adviceText.textContent = p1 + "'s Turn!"
+            }
         }
-        else{
-            this.turn = "X";
-        }
+        console.log("Is game over: " + this.gameOver);
     }
 
-    return {turn, endTurn};
+    const startGame = function(){
+        p1 = document.getElementById("xName").value;
+        p2 = document.getElementById("oName").value;
+        if (p1 === ""){p1 = "X"};
+        if (p2 === ""){p2 = "O"};
+        gameStarted = true;
+    }
+
+    const resetGame = function(){
+        Gameboard.turn = "X";
+        console.log("open slot length before reset:" + Gameboard.openSlots.length);
+        Gameboard.resetPlayedSquares();
+        for (let i = 0; i < 9; i++){
+            Gameboard.boardSlots[i].textContent = "";
+        }
+        console.log("open slot length after reset:" + Gameboard.openSlots.length);
+        this.gameOver = false;
+        this.startGame = false;
+        this.turn = "X";
+        adviceText.textContent = adviceText.textContent = p1 + "'s Turn!"
+    }
+
+    return {turn, startGame, gameOver, resetGame, endTurn};
 })();
 
 const Gameboard = (() => {
     //Game board consisting of 9 open spaces
     const boardSlots = [];
     //An array to track which board slots are still available to play
-    const openSlots = [];
+    let openSlots = [];
 
     const playSquare = function(square){
+        if (!gameStarted){
+            Game.startGame();
+        }
+        if (Game.gameOver){
+            return;
+        }
         if (boardSlots[square].textContent !== ""){
             return;
         }
@@ -54,7 +94,13 @@ const Gameboard = (() => {
         }
         console.log("Open spaces" + openSlots.length);
         console.log("Number of squares: " + boardSlots.length);
-        console.log("slot three: " + boardSlots[2].textContent);
+    }
+
+    const resetPlayedSquares = function(){
+        openSlots = [];
+        for (let i = 0; i < 9; i++){
+            openSlots.push(i);
+        }
     }
 
     const checkForWin = function(){
@@ -89,7 +135,7 @@ const Gameboard = (() => {
     }
 
     return {
-        boardSlots, prepareBoard, checkForWin
+        boardSlots, openSlots, resetPlayedSquares, prepareBoard, checkForWin
     };
 })();
 
@@ -106,7 +152,9 @@ function InitializeGame(){
 }
 
 function playSquare(square){
-    Gameboard.playSquare(square);
+    if (!Game.gameOver){
+        Gameboard.playSquare(square);
+    }
 }
 
 Gameboard.prepareBoard();
